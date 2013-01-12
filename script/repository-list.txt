@@ -1,2 +1,8 @@
 lunifera-releng
-lunifera-dependencieslunifera-dsllunifera-exampleslunifera-gyrexlunifera-IDElunifera-runtimelunifera-runtime-web
+lunifera-dependencies
+lunifera-dsl
+lunifera-examples
+lunifera-gyrex
+lunifera-IDE
+lunifera-runtime
+lunifera-runtime-web
