@@ -7,7 +7,7 @@
 	</prerequisites>
 
 	<groupId>org.lunifera</groupId>
-	<artifactId>org.lunifera.releng</artifactId>
+	<artifactId>org.lunifera</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Lunifera :: Parent POM</name>
