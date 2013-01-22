@@ -1,7 +1,6 @@
 lunifera-releng
 lunifera-dsl
 lunifera-runtime-web
-lunifera-dependencies
 lunifera-runtime
 lunifera-gyrex
 lunifera-examples
