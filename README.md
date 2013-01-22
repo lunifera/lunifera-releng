@@ -38,6 +38,7 @@ In the opened file created a new profile, include the property lunifera.deployme
 
 ### Getting source changes:
 - You can use the git-all script to pull updated from all cloned repositories:
+
 > ./scripts/git-all.sh pull
 
 ### Build a latest kepler p2 repo using the remote composite p2. 
