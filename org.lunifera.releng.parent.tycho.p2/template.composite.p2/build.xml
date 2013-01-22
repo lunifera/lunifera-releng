@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+#====================================================================== 
+# Copyright (c) 2012, 2013 Committers of lunifera.org - Lunifera.org.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+#
+# Contributors:
+#     Cristiano Gavião - initial API and implementation
+#====================================================================== 
+-->
+<project name="Lunifera P2 deployment.">
+	<taskdef resource="net/sf/antcontrib/antlib.xml" />
+	<taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask" />
+
+	<target name="init">
+		<fail message="There property 'lunifera.deployment.root.dir' was not defined in settings.xml or in commandline.">
+			<condition>
+				<or>
+					<not>
+						<isset property="lunifera.deployment.root.dir" />
+					</not>
+					<equals arg1="${lunifera.deployment.root.dir}" arg2="none" />
+				</or>
+			</condition>
+		</fail>
+		<echo message="** Lunifera Deployment dir: ${lunifera.deployment.root.dir}" />
+
+	</target>
+
+	<target name="deploy.generated.p2.to.composite.dir.init" depends="init">
+
+		<if>
+			<available file="${lunifera.deployment.p2.log.file.path}" type="file" />
+			<then>
+				<echo message="OPEN BUILD LOG" />
+				<property file="${lunifera.deployment.p2.log.file.path}" prefix="old" />
+				<echoproperties prefix="old." />
+			</then>
+		</if>
+	</target>
+
+	<target name="deploy.generated.p2.to.composite.dir.clean" depends="deploy.generated.p2.to.composite.dir.init">
+
+		<!-- remove the latest built repository directory -->
+		<if>
+			<and>
+				<equals arg1="${lunifera.deployment.p2.keep.old}" arg2="false" />
+				<available file="${old.lunifera.deployment.p2.target.dir}" type="dir" />
+			</and>
+			<then>
+				<echo message="REMOVING OLD BUILD" />
+				<delete includeemptydirs="true" failonerror="false">
+					<fileset includes="**/*" dir="${old.lunifera.deployment.p2.target.dir}" />
+				</delete>
+				<delete dir="${old.lunifera.deployment.p2.target.dir}" />
+			</then>
+		</if>
+		<!-- remove an existent repository directory -->
+		<if>
+			<available file="${lunifera.deployment.p2.target.dir}" type="dir" />
+			<then>
+				<delete includeemptydirs="true" failonerror="false">
+					<fileset includes="**/*" dir="${lunifera.deployment.p2.target.dir}" />
+				</delete>
+				<delete dir="${lunifera.deployment.p2.target.dir}" />
+			</then>
+		</if>
+	</target>
+
+	<target name="deploy.generated.p2.to.composite.p2" depends="deploy.generated.p2.to.composite.dir.clean">
+		<!-- create the repository directory and copy files from the generated P2-->
+		<echo message="COPYING P2" />
+		<if>
+			<available file="${lunifera.build.p2.source.dir}" type="dir" />
+			<then>
+				<mkdir dir="${lunifera.deployment.p2.target.dir}" />
+				<copy todir="${lunifera.deployment.p2.target.dir}">
+					<fileset dir="${lunifera.build.p2.source.dir}" includes="**/*" />
+				</copy>
+				<if>
+					<equals arg1="${lunifera.deployment.p2.keep.old}" arg2="false" />
+					<then>
+						<propertyfile file="${lunifera.deployment.p2.log.file.path}" comment="Building log for ${lunifera.build.eclipse.platform.name} - ${lunifera.build.type}">
+							<entry key="build.counter" type="int" default="0" operation="+" />
+							<entry key="build.date" type="date" value="now" />
+							<entry key="lunifera.deployment.artifact.version" value="${lunifera.deployment.artifact.version}" />
+							<entry key="lunifera.deployment.p2.target.dir" value="${lunifera.deployment.p2.target.dir}" />
+						</propertyfile>
+					</then>
+					<else>
+						<propertyfile file="${lunifera.deployment.p2.log.file.path}" comment="Building log for ${lunifera.build.eclipse.platform.name} - ${lunifera.build.type}">
+							<entry key="build.counter" type="int" default="0" operation="+" />
+							<entry key="build.date" type="date" value="now" />
+							<entry key="lunifera.deployment.composite.dir" value="${lunifera.deployment.composite.dir}" />
+							<entry key="lunifera.deployment.artifact.versions" default="" operation="+" value=",${lunifera.deployment.artifact.version}" />
+						</propertyfile>
+					</else>
+				</if>
+			</then>
+			<else>
+				<fail message="There P2 repository was not generated in '${lunifera.build.p2.source.dir}' !"/>
+			</else>
+		</if>
+	</target>
+
+	<target name="generate.composite.p2.init" depends="init">
+		<echo message="** Composite P2 dir: ${lunifera.deployment.composite.dir}" />
+		<dirset id="dirs" dir="${lunifera.deployment.composite.dir}" includes="*/*" />
+
+		<fail message="Could not find p2.index template at ${lunifera.deployment.ant.path}p2.index !">
+			<condition>
+				<not>
+					<available file="${lunifera.deployment.ant.path}p2.index" type="file" />
+				</not>
+			</condition>
+		</fail>
+
+		<fail message="Could not find compositeContent.xml template at ${lunifera.deployment.ant.path}compositeContent.xml !">
+			<condition>
+				<not>
+					<available file="${lunifera.deployment.ant.path}compositeContent.xml" type="file" />
+				</not>
+			</condition>
+		</fail>
+		
+		<fail message="Could not find compositeArtifacts.xml template at ${lunifera.deployment.ant.path}compositeArtifacts.xml !">
+			<condition>
+				<not>
+					<available file="${lunifera.deployment.ant.path}compositeArtifacts.xml" type="file" />
+				</not>
+			</condition>
+		</fail>
+
+		<fail message="There is no repositories to process !">
+			<condition>
+				<resourcecount when="equal" count="0" refid="dirs" />
+			</condition>
+		</fail>
+
+		<if>
+			<available file="${lunifera.deployment.composite.dir}compositeContent.xml" type="file" />
+			<then>
+				<echo message="DELETED OLD CONTENT FILE" />
+				<delete file="${lunifera.deployment.composite.dir}compositeContent.xml" />
+			</then>
+		</if>
+		<if>
+			<available file="${lunifera.deployment.composite.dir}compositeArtifacts.xml" type="file" />
+			<then>
+				<echo message="DELETED OLD ARTIFACTS FILE" />
+				<delete file="${lunifera.deployment.composite.dir}compositeArtifacts.xml" />
+			</then>
+		</if>
+	</target>
+
+	<target name="generate.composite.p2.add.compositeContentFile" depends="generate.composite.p2.init">
+		<xmltask source="${lunifera.deployment.ant.path}compositeContent.xml" destbuffer="bufferCompositeContent" report="true" />
+		<var name="counterContent" value="0" />
+		<for param="child" list="${toString:dirs}" delimiter=";">
+			<sequential>
+				<math result="counterContent" operand1="${counterContent}" operand2="1" operation="+" datatype="int" />
+				<echo message="Adding Content Child @{child} - ${counterContent}" />
+				<xmltask sourcebuffer="bufferCompositeContent" destbuffer="bufferCompositeContent">
+					<insert path="/repository/children">
+						<![CDATA[ <child location='@{child}'/> ]]> 
+				  				</insert>
+				</xmltask>
+			</sequential>
+		</for>
+		<xmltask sourcebuffer="bufferCompositeContent" destbuffer="bufferCompositeContent">
+			<replace path="/repository/children/@size" withText="${counterContent}" />
+		</xmltask>
+	</target>
+
+	<target name="generate.composite.p2.add.compositeArtifactsFile" depends="generate.composite.p2.init">
+		<xmltask source="${lunifera.deployment.ant.path}compositeArtifacts.xml" destbuffer="bufferCompositeArtifacts" report="true" />
+		<var name="counterArtifacts" value="0" />
+		<for param="child" list="${toString:dirs}" delimiter=";">
+			<sequential>
+				<math result="counterArtifacts" operand1="${counterArtifacts}" operand2="1" operation="+" datatype="int" />
+				<echo message="Adding Artifact Child @{child} - ${counterArtifacts}" />
+				<xmltask sourcebuffer="bufferCompositeArtifacts" destbuffer="bufferCompositeArtifacts">
+					<insert path="/repository/children">
+						<![CDATA[ <child location='@{child}'/> ]]> 
+		  				</insert>
+				</xmltask>
+			</sequential>
+		</for>
+		<xmltask sourcebuffer="bufferCompositeArtifacts" destbuffer="bufferCompositeArtifacts">
+			<replace path="/repository/children/@size" withText="${counterArtifacts}" />
+		</xmltask>
+	</target>
+
+	<target name="generate.composite.p2.add.p2.index.file">
+		<if>
+			<not>
+				<available file="${lunifera.deployment.composite.dir}p2.index" type="file" />
+			</not>
+			<then>
+				<copy file="${lunifera.deployment.ant.path}p2.index" todir="${lunifera.deployment.composite.dir}" />
+			</then>
+		</if>
+	</target>
+
+	<target name="generate.composite.p2" depends="generate.composite.p2.add.compositeArtifactsFile, generate.composite.p2.add.compositeContentFile, generate.composite.p2.add.p2.index.file">
+
+		<echo message="CREATE COMPOSITE ARTIFACTS" />
+		<xmltask sourcebuffer="bufferCompositeArtifacts" dest="${lunifera.deployment.composite.dir}compositeArtifacts.xml" />
+
+		<echo message="CREATE COMPOSITE CONTENT" />
+		<xmltask sourcebuffer="bufferCompositeContent" dest="${lunifera.deployment.composite.dir}compositeContent.xml" />
+	</target>
+
+	<target name="deploy.p2.and.generate.composite.p2" depends="deploy.generated.p2.to.composite.p2, generate.composite.p2" />
+
+</project>

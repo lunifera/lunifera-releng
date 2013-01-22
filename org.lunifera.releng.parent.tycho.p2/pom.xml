@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--#======================================================================= -->
+<!--# Copyright (c) 2012, 2013 Committers of lunifera.org - Lunifera.org. -->
+<!--# All rights reserved. This program and the accompanying materials -->
+<!--# are made available under the terms of the Eclipse Public License v1.0 -->
+<!--# which accompanies this distribution, and is available at -->
+<!--# http://www.eclipse.org/legal/epl-v10.html -->
+<!--# -->
+<!--# Contributors: -->
+<!--# Cristiano Gavião - initial API and implementation -->
+<!--#======================================================================= -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.lunifera.releng</groupId>
+		<artifactId>org.lunifera.releng.parent.tycho</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../org.lunifera.releng.parent.tycho/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>org.lunifera.releng.parent.tycho.p2</artifactId>
+	<packaging>pom</packaging>
+
+	<properties>
+		<!-- this properties must be set for each repository POM -->
+		<lunifera.deployment.p2.name>none</lunifera.deployment.p2.name>
+
+		<!-- this properties must be set in settings.xml or in command line -->
+		<lunifera.deployment.root.dir>none</lunifera.deployment.root.dir>
+
+		<!-- the type of the build that determines the behavior of some steps and 
+			its properties. -->
+		<!-- <lunifera.build.type></lunifera.build.type> -->
+
+		<!-- this indicate wheter a old p2 should be keeped or not. this should 
+			be automatically set by the builder.type used. -->
+		<lunifera.deployment.p2.keep.old>false</lunifera.deployment.p2.keep.old>
+
+		<lunifera.deployment.ant.path>..${file.separator}lunifera-releng${file.separator}org.lunifera.releng.parent.tycho.p2${file.separator}template.composite.p2${file.separator}</lunifera.deployment.ant.path>
+
+		<lunifera.build.p2.project.name></lunifera.build.p2.project.name>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>deploy.p2</id>
+			<activation>
+				<property>
+					<name>lunifera.deploy.to.local.composite.p2</name>
+				</property>
+			</activation>
+			<properties>
+				<lunifera.build.p2.source.dir>${project.basedir}${file.separator}${lunifera.build.p2.project.name}${file.separator}target${file.separator}repository</lunifera.build.p2.source.dir>
+				<lunifera.deployment.p2.log.file.path>${project.basedir}${file.separator}build.${lunifera.deployment.p2.name}.${lunifera.build.eclipse.platform.name}.${lunifera.build.type}.log.properties</lunifera.deployment.p2.log.file.path>
+				<lunifera.deployment.p2.target.dir>${lunifera.deployment.root.dir}${file.separator}${lunifera.build.eclipse.platform.name}${file.separator}${lunifera.build.type}${file.separator}${lunifera.deployment.p2.name}${file.separator}${lunifera.deployment.artifact.version}</lunifera.deployment.p2.target.dir>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>initialize</phase>
+								<configuration>
+									<quiet>true</quiet>
+									<target>
+										<echo message="Deployment Dir: ${lunifera.deployment.root.dir}" />
+										<echo message="Composite Dir: ${lunifera.deployment.composite.dir}" />
+										<echo message="Platform: ${lunifera.build.eclipse.platform.name}" />
+										<echo message="Build Type: ${lunifera.build.type}" />
+										<echo message="Repo Name: ${lunifera.deployment.p2.name}" />
+										<echo message="Ant Script Path: ${lunifera.deployment.ant.path}" />
+										<echo message="Repo Keep Old: ${lunifera.deployment.p2.keep.old}" />
+										<echo message="Repo Version: ${lunifera.deployment.artifact.version}" />
+										<echo
+											message="Platform URL: ${lunifera.build.eclipse.platform.p2.url}" />
+										<echo message="Log File: ${lunifera.deployment.p2.log.file.path}" />
+										<echo message="P2 Source Dir: ${lunifera.build.p2.source.dir}" />
+										<echo message="P2 Target Dir: ${lunifera.deployment.p2.target.dir}" />
+										<echo
+											message="Eclipse P2 URL: ${lunifera.build.eclipse.platform.p2.url}" />
+										<echo
+											message="Lunifera P2 URL: ${lunifera.build.local.composite.p2.url}" />
+										<!-- called AFTER generating p2 repo to add in extra content -->
+										<ant antfile="${lunifera.deployment.ant.path}build.xml"
+											target="deploy.p2.and.generate.composite.p2" dir=".">
+											<property name="lunifera.deployment.root.dir" value="${lunifera.deployment.root.dir}" />
+											<property name="lunifera.deployment.composite.dir"
+												value="${lunifera.deployment.composite.dir}" />
+											<property name="lunifera.deployment.ant.path" value="${lunifera.deployment.ant.path}" />
+											<property name="lunifera.deployment.artifact.version"
+												value="${lunifera.deployment.artifact.version}" />
+											<property name="lunifera.deployment.composite.dir"
+												value="${lunifera.deployment.composite.dir}" />
+											<property name="lunifera.deployment.p2.log.file.path"
+												value="${lunifera.deployment.p2.log.file.path}" />
+											<property name="lunifera.deployment.artifact.keep.old"
+												value="${lunifera.deployment.artifact.keep.old}" />
+											<property name="lunifera.deployment.artifact.version"
+												value="${lunifera.deployment.artifact.version}" />
+											<property name="lunifera.build.p2.source.dir" value="${lunifera.build.p2.source.dir}" />
+											<property name="lunifera.deployment.p2.target.dir"
+												value="${lunifera.deployment.p2.target.dir}" />
+										</ant>
+									</target>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>org.apache.ant</groupId>
+								<artifactId>ant</artifactId>
+								<version>1.8.4</version>
+							</dependency>
+							<dependency>
+								<groupId>ant-contrib</groupId>
+								<artifactId>ant-contrib</artifactId>
+								<version>1.0b3</version>
+								<exclusions>
+									<exclusion>
+										<groupId>ant</groupId>
+										<artifactId>ant</artifactId>
+									</exclusion>
+								</exclusions>
+							</dependency>
+							<dependency>
+								<groupId>net.sf.saxon</groupId>
+								<artifactId>Saxon-HE</artifactId>
+								<version>9.4</version>
+							</dependency>
+							<dependency>
+								<groupId>com.oopsconsultancy</groupId>
+								<artifactId>xmltask</artifactId>
+								<version>1.16</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>
