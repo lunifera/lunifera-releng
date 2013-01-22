@@ -34,8 +34,8 @@ See this example:
 
 ###3. Build and install the parent POMs:
 * before build any other repository you must build and install the releng parent projects.
-> ```cd lunifera-releng```
-> ```mvn clean install```
+>```cd lunifera-releng```
+>```mvn clean install```
 
 
 ## Development Tasks
@@ -46,8 +46,8 @@ See this example:
 
 
 ### Build a latest kepler p2 repo using the remote composite p2. 
-* open a terminal in the repository root folder and type this:
- > mvn -P lunifera.build.p2 -Dlunifera.build.uses.remote.composite.p2
+* open a terminal in the repository root folder and type this:    
+> ```mvn -P lunifera.build.p2 -Dlunifera.build.uses.remote.composite.p2```
 
 * The remote composite.p2 is the default, so the property 'lunifera.build.uses.remote.composite.p2' can be omited.
 > ```mvn -P lunifera.build.p2```
