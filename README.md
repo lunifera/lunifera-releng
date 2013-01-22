@@ -5,9 +5,9 @@
 
 ###1. Set the local deployment directory:
 
-If you are using Eclipse, go to Preferences/Maven/User Settings. Then click in Open File to open the user's settings.xml file.  
-I you want this file could be found at ~user/.m2 directory.  
-In the opened file created a new profile and include the property 'lunifera.deployment.root.dir' and set a value for it that points to a created directory where the result of each repository's build will be copied.   
+If you are using Eclipse, go to Preferences/Maven/User Settings. Then click in Open File to open the user's settings.xml file.    
+I you want this file could be found at ~user/.m2 directory.    
+In the opened file created a new profile and include the property 'lunifera.deployment.root.dir' and set a value for it that points to a created directory where the result of each repository's build will be copied.     
 See this example:
 
     <profiles>
