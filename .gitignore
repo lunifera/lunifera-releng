@@ -1,8 +1,12 @@
-.project
-.settings
-*.class
+bin/
+.*.jar
+**/xtend-gen
+**/src-gen
 .DS_Store
-# Package Files #
-*.jar
-*.war
-*.ear
+target
+.classpath
+.settings
+src-gen/
+xtend-gen/
+plugin.xml_gen
+.project
