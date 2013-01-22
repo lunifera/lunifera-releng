@@ -50,11 +50,13 @@ In the opened file created a new profile, include the property lunifera.deployme
 
 ### Build a latest kepler p2 repo using the remote composite p2 and deploying the results to local deployment folder.
 - open a terminal in the repository root folder and type this:
+
 > mvn -P lunifera.build.p2 -Dlunifera.build.uses.remote.composite.p2 -Dlunifera.deploy.to.local.composite.p2 
 
 
 ### Build a latest kepler p2 repo using the local composite p2 and deploying the results to local deployment folder.
 - open a terminal in the repository root folder and type this:
+
 > mvn -P lunifera.build.p2 -Dlunifera.build.uses.local.composite.p2 -Dlunifera.deploy.to.local.composite.p2
 
 
