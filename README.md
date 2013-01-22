@@ -33,7 +33,7 @@ See this example:
 
 
 ###3. Build and install the parent POMs:
-* before build any other repository you must build and install the releng parent projects.
+* before build any other repository you must build and install the releng parent projects:
 ```cd lunifera-releng```
 ```mvn clean install```
 
@@ -41,7 +41,7 @@ See this example:
 ## Development Tasks
 
 ### Getting source changes:
-* You can use the git-all script to pull updated from all cloned repositories:
+* You can use the git-all script to pull updated from all cloned repositories:    
 ```./scripts/git-all.sh pull```
 
 
