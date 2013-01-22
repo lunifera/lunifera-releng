@@ -25,11 +25,10 @@ See this example:
 ###2. Clone the source repositories:
 * To easy this job, you can clone only the lunifera-releng repository:    
 ```git clone git@github.com:lunifera/lunifera-releng.git```
-
 * then use this scripts to clone other related projects:    
-```./scripts/git-clone-others.sh```
+``` ./scripts/git-clone-others.sh```
 
-- To be able to contribute you must fork the desired lunifera's [github repository](https://github.com/lunifera?tab=repositories) and clone from it.
+To be able to contribute you must fork the desired lunifera's [github repository](https://github.com/lunifera?tab=repositories) and clone from it.
 
 
 ###3. Build and install the parent POMs:
