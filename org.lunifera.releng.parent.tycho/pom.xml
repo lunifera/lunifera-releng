@@ -99,6 +99,23 @@
 				</repository>
 			</repositories>
 		</profile>
+		<profile>
+			<id>lunifera.build.uses.default.composite.p2</id>
+			<activation>
+				<!-- this means that if the user do not inform that he wants to use local 
+					explicitly the remote will be used -->
+				<property>
+					<name>!lunifera.build.uses.local.composite.p2</name>
+				</property>
+			</activation>
+			<repositories>
+				<repository>
+					<id>lunifera.composite.p2</id>
+					<url>${lunifera.build.remote.composite.p2.url}</url>
+					<layout>p2</layout>
+				</repository>
+			</repositories>
+		</profile>
 
 		<profile>
 			<id>prepare-for-next-release</id>

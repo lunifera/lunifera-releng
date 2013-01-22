@@ -39,13 +39,23 @@ git clone git@github.com:lunifera/lunifera-releng.git
 > cd lunifera-releng
 > mvn clean install
 
+# Build a latest kepler p2 repo using the remote composite p2. 
+- open a terminal in the repository root folder and:
+> mvn -P lunifera.build.p2 -Dlunifera.build.uses.remote.composite.p2
+
+- The remote composite.p2 is the default, so the property 'lunifera.build.uses.remote.composite.p2' can be omited too.
+> mvn -P lunifera.build.p2
+
+
+# Build a latest kepler p2 repo using the remote composite p2 and will deploy the results to local deployment folder.
+- open a terminal in the repository root folder and:
+> mvn -P lunifera.build.p2 -Dlunifera.build.uses.remote.composite.p2 -Dlunifera.deploy.to.local.composite.p2 
+
+
 # Build a latest kepler p2 repo using the local composite p2 and will deploy the results to local deployment folder.
 - open a terminal in the repository root folder and:
 > mvn -P lunifera.build.p2 -Dlunifera.build.uses.local.composite.p2 -Dlunifera.deploy.to.local.composite.p2 
 
-# Build a latest kepler p2 repo using the remote composite p2 and will deploy the results to local deployment folder:
-- open a terminal in the repository root folder and:
-> mvn -P lunifera.build.p2 -Dlunifera.build.uses.remote.composite.p2 -Dlunifera.deploy.to.local.composite.p2 
 
 # Build a latest kepler p2 repo using both local and remote composite p2 and will deploy the results to local deployment folder:
 - open a terminal in the repository root folder and:
