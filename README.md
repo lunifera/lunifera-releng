@@ -41,7 +41,7 @@ See this example:
 ## Development Tasks
 
 ### Getting source changes:
-- You can use the git-all script to pull updated from all cloned repositories:
+- You can use the git-all script to pull updated from all cloned repositories: 
 > `./scripts/git-all.sh pull`
 
 
@@ -57,14 +57,23 @@ See this example:
 - open a terminal in the repository root folder and type this:
  > mvn -P lunifera.build.p2 -Dlunifera.build.uses.remote.composite.p2
 
+- The remote composite.p2 is the default, so the property 'lunifera.build.uses.remote.composite.p2' can be omited.
+ > mvn -P lunifera.build.p2
+
 
 ### Build a latest kepler p2 repo using the local composite p2 and deploying the results to local deployment folder. 
 - open a terminal in the repository root folder and type this:
  > mvn -P lunifera.build.p2 -Dlunifera.build.uses.remote.composite.p2
 
+- The remote composite.p2 is the default, so the property 'lunifera.build.uses.remote.composite.p2' can be omited.
+ > mvn -P lunifera.build.p2
+
 
 ### Build a latest kepler p2 repo using both local and remote composite p2 and deploying the results to local deployment folder: 
 - open a terminal in the repository root folder and type this:
  > mvn -P lunifera.build.p2 -Dlunifera.build.uses.remote.composite.p2
+
+- The remote composite.p2 is the default, so the property 'lunifera.build.uses.remote.composite.p2' can be omited.
+ > mvn -P lunifera.build.p2
 
 
