@@ -6,7 +6,7 @@ lunifera-releng
 
 ###1. Set the deployment directory:
 
-go to Preferences/Maven/User Settings. Then click in Open File to open the user's settings.xml file. 
+Go to Preferences/Maven/User Settings. Then click in Open File to open the user's settings.xml file.
 In the opened file created a new profile, include the property lunifera.deployment.root.dir and set a value for it. see this example:
 
     <profiles>
@@ -21,7 +21,7 @@ In the opened file created a new profile, include the property lunifera.deployme
       </profile>
     </profiles>
 
-###2. clone the lunifera-releng:
+###2. Clone the source repositories:
 - to be able to contribute you must fork the lunifera's github repositories and clone from them.
 > git clone git@github.com:lunifera/lunifera-releng.git
 
@@ -41,7 +41,7 @@ In the opened file created a new profile, include the property lunifera.deployme
 > ./scripts/git-all.sh pull
 
 ### Build a latest kepler p2 repo using the remote composite p2. 
-- open a terminal in the repository root folder and:
+- open a terminal in the repository root folder and type this:
 > mvn -P lunifera.build.p2 -Dlunifera.build.uses.remote.composite.p2
 
 - The remote composite.p2 is the default, so the property 'lunifera.build.uses.remote.composite.p2' can be omited.
@@ -55,9 +55,11 @@ In the opened file created a new profile, include the property lunifera.deployme
 
 ### Build a latest kepler p2 repo using the local composite p2 and deploying the results to local deployment folder.
 - open a terminal in the repository root folder and type this:
-> mvn -P lunifera.build.p2 -Dlunifera.build.uses.local.composite.p2 -Dlunifera.deploy.to.local.composite.p2 
+> mvn -P lunifera.build.p2 -Dlunifera.build.uses.local.composite.p2 -Dlunifera.deploy.to.local.composite.p2
 
 
 ### Build a latest kepler p2 repo using both local and remote composite p2 and deploying the results to local deployment folder:
 - open a terminal in the repository root folder and type this:
+
 > mvn -P lunifera.build.p2 -Dlunifera.build.uses.local.composite.p2 -Dlunifera.build.uses.remote.composite.p2 -Dlunifera.deploy.to.local.composite.p2
+
