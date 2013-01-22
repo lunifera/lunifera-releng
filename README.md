@@ -1,13 +1,14 @@
-lunifera-releng
-===============
+# lunifera-releng
+==================
 
 ## Setting up the development environment
----------------------------------------
 
-###1. Set the deployment directory:
+###1. Set the local deployment directory:
 
-Go to Preferences/Maven/User Settings. Then click in Open File to open the user's settings.xml file.
-In the opened file created a new profile, include the property lunifera.deployment.root.dir and set a value for it. see this example:
+If you are using Eclipse, go to Preferences/Maven/User Settings. Then click in Open File to open the user's settings.xml file.
+I you want this file could be found at ~user/.m2 directory
+In the opened file created a new profile and include the property 'lunifera.deployment.root.dir' and set a value for it that points to a created directory where the result of each repository's build will be copied. 
+See this example:
 
     <profiles>
       <profile>
@@ -22,11 +23,13 @@ In the opened file created a new profile, include the property lunifera.deployme
     </profiles>
 
 ###2. Clone the source repositories:
-- to be able to contribute you must fork the lunifera's github repositories and clone from them.
 > git clone git@github.com:lunifera/lunifera-releng.git
 
 - then use this scripts to clone other related projects:
 > ./scripts/git-clone-others.sh
+
+- To be able to contribute you must fork the desired lunifera's [github repository](https://github.com/lunifera?tab=repositories) and clone from it.
+
 
 ###3. Build and install the parent POMs:
 - before build any other repository you must build and install the releng parent projects.
