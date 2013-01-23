@@ -311,7 +311,7 @@
 	<pluginRepositories>
 		<pluginRepository>
 			<id>tycho-snapshots</id>
-			<url>${lunifera.build.local.composite.p2.url}</url>
+			<url>https://oss.sonatype.org/content/groups/public/</url>
 		</pluginRepository>
 		<pluginRepository>
 			<id>xtend</id>
