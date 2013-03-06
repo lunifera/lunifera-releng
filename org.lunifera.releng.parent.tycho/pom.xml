@@ -78,7 +78,7 @@
 			</activation>
 			<repositories>
 				<repository>
-					<id>lunifera.composite.p2</id>
+					<id>lunifera.local.composite.p2</id>
 					<url>${lunifera.build.local.composite.p2.url}</url>
 					<layout>p2</layout>
 				</repository>
@@ -93,7 +93,7 @@
 			</activation>
 			<repositories>
 				<repository>
-					<id>lunifera.composite.p2</id>
+					<id>lunifera.remote.composite.p2</id>
 					<url>${lunifera.build.remote.composite.p2.url}</url>
 					<layout>p2</layout>
 				</repository>
