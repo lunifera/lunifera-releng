@@ -24,8 +24,8 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<tycho-version>0.17.0-SNAPSHOT</tycho-version>
-		<tychoExtrasVersion>0.17.0-SNAPSHOT</tychoExtrasVersion>
+		<tycho-version>0.17.0</tycho-version>
+		<tychoExtrasVersion>0.17.0</tychoExtrasVersion>
 
 		<!-- this properties must be set for each build platform in POM -->
 		<lunifera.build.eclipse.platform.name></lunifera.build.eclipse.platform.name>
@@ -309,10 +309,6 @@
 	</repositories>
 
 	<pluginRepositories>
-		<pluginRepository>
-			<id>tycho-snapshots</id>
-			<url>https://oss.sonatype.org/content/groups/public/</url>
-		</pluginRepository>
 		<pluginRepository>
 			<id>xtend</id>
 			<url>http://build.eclipse.org/common/xtend/maven/</url>
