@@ -126,5 +126,10 @@
 			<name>JBoss Public Repository Group</name>
 			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
 		</repository>
+		<repository>
+			<id>lunifera-deps-releases</id>
+			<name>Dependencies required by lunifera that are not contained in a repo</name>
+			<url>http://maven.lunifera.org:8086/nexus/content/repositories/releases/</url>
+		</repository>
 	</repositories>
 </project>
