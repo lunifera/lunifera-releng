@@ -24,8 +24,8 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<tycho-version>0.17.0</tycho-version>
-		<tychoExtrasVersion>0.17.0</tychoExtrasVersion>
+		<tycho-version>0.18.0</tycho-version>
+		<tychoExtrasVersion>0.18.0</tychoExtrasVersion>
 
 		<!-- this properties must be set for each build platform in POM -->
 		<lunifera.build.eclipse.platform.name></lunifera.build.eclipse.platform.name>
