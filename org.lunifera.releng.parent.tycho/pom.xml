@@ -33,7 +33,7 @@
 		<lunifera.build.default.p2.url>none</lunifera.build.default.p2.url>
 		<lunifera.deployment.composite.dir>${lunifera.deployment.root.dir}${file.separator}${lunifera.build.eclipse.platform.name}${file.separator}${lunifera.build.type}${file.separator}</lunifera.deployment.composite.dir>
 		<lunifera.build.local.composite.p2.url>file://${lunifera.deployment.composite.dir}</lunifera.build.local.composite.p2.url>
-		<lunifera.build.remote.composite.p2.url>http://lunifera.github.com/p2/${lunifera.build.eclipse.platform.name}/${lunifera.build.type}</lunifera.build.remote.composite.p2.url>
+		<lunifera.build.remote.composite.p2.url>http://lun.lunifera.org/downloads/p2/lunifera/${lunifera.build.eclipse.platform.name}/${lunifera.build.type}</lunifera.build.remote.composite.p2.url>
 
 		<!-- this property is calculated based on the aggregator pom's version -->
 		<lunifera.deployment.artifact.version>none</lunifera.deployment.artifact.version>
