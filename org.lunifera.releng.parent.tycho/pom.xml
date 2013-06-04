@@ -56,20 +56,6 @@
 			</properties>
 		</profile>
 		<profile>
-			<id>platform.juno</id>
-			<activation>
-				<property>
-					<name>lunifera.build.eclipse.platform.name</name>
-					<value>juno</value>
-				</property>
-			</activation>
-			<properties>
-				<lunifera.build.eclipse.platform.name>juno</lunifera.build.eclipse.platform.name>
-				<lunifera.build.eclipse.platform.p2.url>http://download.eclipse.org/releases/juno</lunifera.build.eclipse.platform.p2.url>
-			</properties>
-		</profile>
-
-		<profile>
 			<id>lunifera.build.uses.local.composite.p2</id>
 			<activation>
 				<property>
