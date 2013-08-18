@@ -15,12 +15,27 @@
 	<artifactId>org.lunifera.releng</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	
+	<description>Lunifera - Release Engenering POM files.</description>
+
+	<prerequisites>
+		<!-- Maven 3.1.0 is the earliest version using Eclipse Aether, Maven 3.0.x 
+			uses the predecessor Sonatype Aether -->
+		<maven>3.1</maven>
+	</prerequisites>
 
 	<modules>
 		<module>org.lunifera.releng.parent</module>
 		<module>org.lunifera.releng.parent.felix</module>
+		<module>org.lunifera.releng.parent.felix.obr</module>
 		<module>org.lunifera.releng.parent.tycho</module>
 		<module>org.lunifera.releng.parent.tycho.p2</module>
 	</modules>
 
+
+	<scm>
+		<connection>scm:git:git://github.com/jacoco/jacoco.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:lunifera/lunifera-releng.git</developerConnection>
+		<url>https://github.com/lunifera/lunifera-releng</url>
+	</scm>
 </project>
