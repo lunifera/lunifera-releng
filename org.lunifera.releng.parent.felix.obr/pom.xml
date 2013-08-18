@@ -1,0 +1,126 @@
+<!--#======================================================================= -->
+<!--# Copyright (c) 2012, 2013 Committers of lunifera.org - Lunifera.org. -->
+<!--# All rights reserved. This program and the accompanying materials -->
+<!--# are made available under the terms of the Eclipse Public License v1.0 -->
+<!--# which accompanies this distribution, and is available at -->
+<!--# http://www.eclipse.org/legal/epl-v10.html -->
+<!--# -->
+<!--# Contributors: -->
+<!--# Cristiano Gavião - initial API and implementation -->
+<!--#======================================================================= -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.lunifera.releng</groupId>
+		<artifactId>org.lunifera.releng.parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../org.lunifera.releng.parent/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>org.lunifera.releng.parent.felix.obr</artifactId>
+	<packaging>pom</packaging>
+
+	<properties>
+		<lunifera.build.obr.project.name></lunifera.build.obr.project.name>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>deploy.obr</id>
+			<activation>
+				<property>
+					<name>lunifera.deploy.to.local.composite.obr</name>
+				</property>
+			</activation>
+			<properties>
+				<lunifera.build.p2.source.dir>${project.basedir}${file.separator}${lunifera.build.p2.project.name}${file.separator}target${file.separator}repository</lunifera.build.p2.source.dir>
+				<lunifera.deployment.p2.log.file.path>${project.basedir}${file.separator}build.${lunifera.deployment.p2.name}.${lunifera.build.eclipse.platform.name}.${lunifera.build.type}.log.properties</lunifera.deployment.p2.log.file.path>
+				<lunifera.deployment.p2.target.dir>${lunifera.deployment.root.dir}${file.separator}${lunifera.build.eclipse.platform.name}${file.separator}${lunifera.build.type}${file.separator}${lunifera.deployment.p2.name}${file.separator}${lunifera.deployment.artifact.version}</lunifera.deployment.p2.target.dir>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.lunifera.tools.maven</groupId>
+						<artifactId>obr-maven-plugin</artifactId>
+						<version>0.0.1-SNAPSHOT</version>
+						<executions>
+							<execution>
+								<id>repository-generation</id>
+								<goals>
+									<goal>generate</goal>
+								</goals>
+								<configuration>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>initialize</phase>
+								<configuration>
+									<quiet>true</quiet>
+									<target>
+										<echo message="Deployment Dir: ${lunifera.deployment.root.dir}" />
+										<echo message="Composite Dir: ${lunifera.deployment.composite.dir}" />
+										<echo message="Platform: ${lunifera.build.eclipse.platform.name}" />
+										<echo message="Build Type: ${lunifera.build.type}" />
+										<echo message="Repo Name: ${lunifera.deployment.p2.name}" />
+										<echo message="Ant Script Path: ${lunifera.deployment.ant.path}" />
+										<echo message="Repo Keep Old: ${lunifera.deployment.p2.keep.old}" />
+										<echo message="Repo Version: ${lunifera.deployment.artifact.version}" />
+										<echo
+											message="Platform URL: ${lunifera.build.eclipse.platform.p2.url}" />
+										<echo message="Log File: ${lunifera.deployment.p2.log.file.path}" />
+										<echo message="P2 Source Dir: ${lunifera.build.p2.source.dir}" />
+										<echo message="P2 Target Dir: ${lunifera.deployment.p2.target.dir}" />
+										<echo
+											message="Eclipse P2 URL: ${lunifera.build.eclipse.platform.p2.url}" />
+										<echo
+											message="Lunifera P2 URL: ${lunifera.build.local.composite.p2.url}" />
+										<!-- called AFTER generating p2 repo to add in extra content -->
+
+									</target>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>org.apache.ant</groupId>
+								<artifactId>ant</artifactId>
+								<version>1.9.2</version>
+							</dependency>
+							<dependency>
+								<groupId>ant-contrib</groupId>
+								<artifactId>ant-contrib</artifactId>
+								<version>1.0b3</version>
+								<exclusions>
+									<exclusion>
+										<groupId>ant</groupId>
+										<artifactId>ant</artifactId>
+									</exclusion>
+								</exclusions>
+							</dependency>
+							<dependency>
+								<groupId>net.sf.saxon</groupId>
+								<artifactId>Saxon-HE</artifactId>
+								<version>9.4</version>
+							</dependency>
+							<dependency>
+								<groupId>org.osgi</groupId>
+								<artifactId>org.osgi.impl.bundle.repoindex.ant</artifactId>
+								<version>0.0.1</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>

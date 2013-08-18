@@ -15,7 +15,8 @@
 	<prerequisites>
 		<!-- Maven 3.1.0 is the earliest version using Eclipse Aether, Maven 3.0.x 
 			uses the predecessor Sonatype Aether -->
-		<maven>3.1</maven>
+<!-- 		<maven>3.1</maven> -->
+		<maven>3.0</maven>
 	</prerequisites>
 
 	<groupId>org.lunifera.releng</groupId>
