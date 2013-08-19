@@ -15,7 +15,7 @@
 	<prerequisites>
 		<!-- Maven 3.1.0 is the earliest version using Eclipse Aether, Maven 3.0.x 
 			uses the predecessor Sonatype Aether -->
-<!-- 		<maven>3.1</maven> -->
+		<!-- <maven>3.1</maven> -->
 		<maven>3.0</maven>
 	</prerequisites>
 
@@ -242,6 +242,56 @@
 				<version>${apache.aries.subsystem.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>org.apache.aries.application</groupId>
+				<artifactId>org.apache.aries.application.management</artifactId>
+				<version>${apache.aries.subsystem.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.aries.application</groupId>
+				<artifactId>org.apache.aries.application.api</artifactId>
+				<version>${apache.aries.subsystem.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.aries.application</groupId>
+				<artifactId>org.apache.aries.application.utils</artifactId>
+				<version>${apache.aries.subsystem.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.aries.application</groupId>
+				<artifactId>org.apache.aries.application.modeller</artifactId>
+				<version>${apache.aries.subsystem.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.aries.application</groupId>
+				<artifactId>org.apache.aries.application.install</artifactId>
+				<version>${apache.aries.subsystem.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.aries.application</groupId>
+				<artifactId>org.apache.aries.application.default.local.platform</artifactId>
+				<version>${apache.aries.subsystem.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.aries.application</groupId>
+				<artifactId>org.apache.aries.application.deployment.management</artifactId>
+				<version>${apache.aries.subsystem.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.aries.blueprint</groupId>
+				<artifactId>org.apache.aries.blueprint</artifactId>
+				<version>1.1.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.aries.proxy</groupId>
+				<artifactId>org.apache.aries.proxy</artifactId>
+				<version>1.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.aries</groupId>
+				<artifactId>org.apache.aries.util</artifactId>
+				<version>1.1.0</version>
+			</dependency>
+			<dependency>
 				<groupId>org.apache.shiro</groupId>
 				<artifactId>shiro-core</artifactId>
 				<version>${shiro.version}</version>
@@ -249,6 +299,16 @@
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
+				<version>1.7.5</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-jcl</artifactId>
+				<version>1.7.5</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
 				<version>1.7.5</version>
 			</dependency>
 			<dependency>
