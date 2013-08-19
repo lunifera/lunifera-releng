@@ -65,8 +65,8 @@
 				</property>
 			</activation>
 			<properties>
-				<lunifera.build.eclipse.platform.name>kepler</lunifera.build.eclipse.platform.name>
-				<lunifera.build.eclipse.platform.p2.url>http://download.eclipse.org/releases/kepler</lunifera.build.eclipse.platform.p2.url>
+				<lunifera.build.eclipse.platform.name>luna</lunifera.build.eclipse.platform.name>
+				<lunifera.build.eclipse.platform.p2.url>http://download.eclipse.org/releases/luna</lunifera.build.eclipse.platform.p2.url>
 			</properties>
 		</profile>
 		<profile>
@@ -111,7 +111,7 @@
 			<repositories>
 				<repository>
 					<id>lunifera.composite.p2</id>
-					<url>${lunifera.build.remote.composite.p2.url}</url>
+					<url>${lunifera.build.local.composite.p2.url}</url>
 					<layout>p2</layout>
 				</repository>
 			</repositories>
