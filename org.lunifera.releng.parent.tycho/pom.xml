@@ -61,7 +61,8 @@
 			<id>platform.luna</id>
 			<activation>
 				<property>
-					<name>!lunifera.build.eclipse.platform.name</name>
+					<name>lunifera.build.eclipse.platform.name</name>
+					<value>luna</value>
 				</property>
 			</activation>
 			<properties>
