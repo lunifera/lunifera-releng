@@ -27,6 +27,8 @@
 		<tycho-version>0.18.1</tycho-version>
 		<tychoExtrasVersion>0.18.1</tychoExtrasVersion>
 
+		<orbit-site>http://download.eclipse.org/tools/orbit/downloads/drops/S20130724151342/repository/</orbit-site>
+
 		<!-- this properties must be set for each build platform in POM -->
 		<lunifera.build.eclipse.platform.name></lunifera.build.eclipse.platform.name>
 		<lunifera.build.eclipse.platform.p2.url>none</lunifera.build.eclipse.platform.p2.url>
