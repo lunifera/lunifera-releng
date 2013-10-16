@@ -397,6 +397,10 @@
 		</dependencies>
 	</dependencyManagement>
 	<repositories>
+        <repository>
+            <id>xtend</id>
+            <url>http://build.eclipse.org/common/xtend/maven/</url>
+        </repository>
 		<repository>
 			<id>jboss-public-repository-group</id>
 			<name>JBoss Public Repository Group</name>
